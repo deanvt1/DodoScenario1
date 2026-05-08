@@ -130,10 +130,10 @@ public class MyDodo extends Dodo
      */
 
     public boolean canLayEgg( ){
-//        if( onEgg() ){
-            // E
-//        }else{
+       if( onEgg() ){
+            return false;
+        }else{
             return true;
-//        }
+        }
     }  
 }
