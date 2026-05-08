@@ -15,8 +15,10 @@ public class MyDodo extends Dodo
     }
 
     public void act() {
-        move (1);
-        turn (360);
+        
+        turn (180);
+        
+        turn (1);
         
         
     }
