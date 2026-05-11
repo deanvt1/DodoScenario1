@@ -95,7 +95,8 @@ public class MyDodo extends Dodo
         int nrStepsTaken = 0;               // set counter to 0
         while ( nrStepsTaken < distance ) { // check if more steps must be taken  
             move();                         // take a step
-            nrStepsTaken++;                 // increment the counter
+            nrStepsTaken++;     // increment the counter
+            System.out.println();
         }
     }
 
@@ -113,6 +114,7 @@ public class MyDodo extends Dodo
     public void walkToWorldEdgePrintingCoordinates( ){
         while( ! borderAhead() ){
             // print coordinates
+            
             move();
         }
     }
@@ -136,4 +138,10 @@ public class MyDodo extends Dodo
             return true;
         }
     }  
+    
+    public void 
 }
+}
+
+
+
