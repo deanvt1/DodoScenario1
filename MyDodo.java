@@ -20,6 +20,8 @@ public class MyDodo extends Dodo
         
         turn (1);
         
+        climbOverFence();
+        
         
     }
 
@@ -138,10 +140,23 @@ public class MyDodo extends Dodo
             return true;
         }
     }  
-    
-    public void 
+    public void climbOverFence()
+    {
+        {
+        turnLeft();
+        move();
+        
+        turnRight();
+        move();
+        move();
+        
+        turnRight();
+        move();
+        
+        turnLeft();
+        
+    }
 }
 }
-
 
 
