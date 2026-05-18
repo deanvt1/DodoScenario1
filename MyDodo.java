@@ -115,9 +115,9 @@ public class MyDodo extends Dodo
 
     public void walkToWorldEdgePrintingCoordinates( ){
         while( ! borderAhead() ){
-            // print coordinates
-            
-            move();
+         
+       move(); //loopt totdat hij de border raakt en dan stopt die
+       
         }
     }
 
@@ -157,6 +157,13 @@ public class MyDodo extends Dodo
         
     }
 }
+// zolang hij niet op egg is blijft hij lopen als die op egg staat stopt die met lopen
+public void gotoEgg() {
+    while (!onEgg()) {
+        move();
+    }
 }
+}
+
 
 
