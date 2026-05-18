@@ -20,7 +20,7 @@ public class MyDodo extends Dodo
         
         turn (1);
         
-        climbOverFence();
+        
         
         
     }
@@ -163,7 +163,20 @@ public void gotoEgg() {
         move();
     }
 }
+public void goBackToStartOfRowAndFaceBack() {
+    //draai om loop naar de andere kant draai weer twee keer naar de andere kant.
+    turnLeft();
+    turnLeft();
+    
+     walkToWorldEdgePrintingCoordinates();
+        
+    
+    turnLeft();
+    turnLeft();
+    
 }
+}
+
 
 
 
