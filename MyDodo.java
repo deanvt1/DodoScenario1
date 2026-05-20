@@ -186,6 +186,17 @@ public void walkToWorldEdgeClimbingOverFences(){
         }
     }
 }
+
+public void pickUpGrainAndPrintCoordinates(){
+        while( ! borderAhead()){
+       if (onGrain()){ 
+           System.out.println(getX() +","+ getY());
+          pickUpGrain();  
+        }
+        move(); //loopt totdat hij de border raakt en dan stopt die
+    }
+}
+
 }
 
 
