@@ -197,6 +197,17 @@ public void pickUpGrainAndPrintCoordinates(){
     }
 }
 
+public void stepOneCellBackwards() {
+    // twee keer naar rechts draaien
+    turnRight();
+    turnRight();
+//draai
+    move();
+//weer terug draaien
+    turnRight();
+    turnRight();
+}
+
 }
 
 
