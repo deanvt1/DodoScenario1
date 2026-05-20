@@ -175,6 +175,17 @@ public void goBackToStartOfRowAndFaceBack() {
     turnLeft();
     
 }
+
+public void walkToWorldEdgeClimbingOverFences(){
+        while( ! borderAhead()){
+         
+       move(); //loopt totdat hij de border raakt en dan stopt die
+       
+       if (fenceAhead()){ 
+          climbOverFence();
+        }
+    }
+}
 }
 
 
