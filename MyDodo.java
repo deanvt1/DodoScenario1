@@ -207,7 +207,15 @@ public void stepOneCellBackwards() {
     turnRight();
     turnRight();
 }
-
+public void walkToWorldEdgeLayEgg(){
+        while( ! borderAhead()){
+         move();
+       
+       if (onNest()) {
+          layEgg();
+        }
+    }
+}
 }
 
 
