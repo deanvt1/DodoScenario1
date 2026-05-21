@@ -177,14 +177,20 @@ public void goBackToStartOfRowAndFaceBack() {
 }
 
 public void walkToWorldEdgeClimbingOverFences(){
-        while( ! borderAhead()){
+        while( ! borderAhead()     && !onNest()){
          
-       move(); //loopt totdat hij de border raakt en dan stopt die
+       
        
        if (fenceAhead()){ 
           climbOverFence();
-        }
+        } else {
+        move();
+        
     }
+    if (onNest()){
+        layEgg();
+    }
+}
 }
 
 public void pickUpGrainAndPrintCoordinates(){
@@ -216,6 +222,7 @@ public void walkToWorldEdgeLayEgg(){
         }
     }
 }
+
 }
 
 
