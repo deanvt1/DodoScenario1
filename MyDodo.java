@@ -222,7 +222,26 @@ public void walkToWorldEdgeLayEgg(){
         }
     }
 }
-
+public void walkAroundFencedArea() {
+    move();
+move();
+move();
+turnRight();
+move();
+move();
+move();
+move();
+turnRight();
+move();
+move();
+move();
+move();
+turnRight();
+move();
+move();
+move();
+turnRight();
+}
 }
 
 
