@@ -222,27 +222,32 @@ public void walkToWorldEdgeLayEgg(){
         }
     }
 }
+
+
 public void walkAroundFencedArea() {
-    move();
-move();
-move();
-turnRight();
-move();
-move();
-move();
-move();
-turnRight();
-move();
-move();
-move();
-move();
-turnRight();
-move();
-move();
-move();
-turnRight();
+while (!onEgg()){
+      turnRight();
+      if (fenceAhead()){
+          turnLeft();
+        }
+        move();
+  }
 }
 
+public void walkAroundOtherFencedArea() {
+while (!onEgg()) {
+          turnRight();
+          if (canMove()) {
+              move();
+          } else {
+              turnLeft();
+              while (!canMove()) {
+                  turnLeft();
+              }
+              move();
+          }
+      }
+}
 }
 
 
