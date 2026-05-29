@@ -300,10 +300,54 @@ public void faceNorth()
 }
 }
 public void faceDirection(int direction) {
-    while(getDirection() != direction) {
+    if (direction >= 0 && direction <= 3) {
+        while (getDirection() != direction) {
+            turnRight();
+        }
+    }
+}
+/**
+ * zolang niet op de nest
+ * draai naar rechts
+ * als er geen hek voor je staat
+ * loop
+ * anders naar links en als er dan weer geen hek voor je staat loop en als dat weer niet is moet je gaan lopen en daarna weer naar links
+ * 
+ */
+public void findMaze()
+{
+    while (!onNest())
+    {
         turnRight();
+        if (!fenceAhead())
+        {
+            move();
+        }
+        else
+        {
+            turnLeft();
+            if (!fenceAhead())
+            {
+                move();
+            }
+            else
+            {
+                turnLeft();
+                if (!fenceAhead())
+                {
+                    move();
+                }
+                else
+                {
+                    turnLeft();
+                    move();
+                }
+            }
+        }
     }
 }
 }
+
+
 
 
