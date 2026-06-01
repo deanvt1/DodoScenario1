@@ -371,5 +371,30 @@ public class MyDodo extends Dodo
             jump(getY() - y);
         }
     }
+
+    public int countEggsInRow()
+    {
+        int aantalEieren = 0;
+
+        if (onEgg())
+        {
+            aantalEieren++;
+        }
+
+        while (!borderAhead())
+        {
+            move();
+
+            if (onEgg())
+            {
+                aantalEieren++;
+            }
+        }
+
+        goBackToStartOfRowAndFaceBack();
+
+        return aantalEieren;
+    }
+    
 } 
 
