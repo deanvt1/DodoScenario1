@@ -21,6 +21,7 @@ public class MyDodo extends Dodo
         turn (1);
 
     }
+
     /**
      * Move one cell forward in the current direction.
      * 
@@ -242,90 +243,65 @@ public class MyDodo extends Dodo
     }
 
     public void eggTrailToNest() {
-while (!onNest()){
-    if (nestAhead()) {
-        move();
-    } else {
-    moveToNextEgg();
-}
-}
-}
-private void moveToNextEgg() {
-    if (eggAhead()) {
-        move();
-    } else if (eggLeft()) {
-        turnLeft();
-        move();
-    } else if (eggRight()) {
-        turnRight();
-        move();
+        while(!onNest()) {
+            if(eggAhead() || nestAhead()) {
+                move();
+                turnLeft();
+            } else {
+                turnRight();
+            }
+        }
     }
-}
 
-private boolean eggLeft() {
-    turnLeft();
-    boolean found = eggAhead();
-    turnRight();
-    return found;
-}
-private boolean eggRight() {
-    turnRight();
-    boolean found = eggAhead();
-    turnLeft();
-    return found;
-}
-
-public void faceEast()
-{
-    while(getDirection() != EAST){
-    turnRight();
-}
-}
-public void faceWest()
-{
-    while(getDirection() != WEST){
-    turnRight();
-}
-}
-public void faceSouth()
-{
-    while(getDirection() != SOUTH){
-    turnRight();
-}
-}
-public void faceNorth()
-{
-    while(getDirection() != NORTH){
-    turnRight();
-}
-}
-public void faceDirection(int direction) {
-    if (direction >= 0 && direction <= 3) {
-        while (getDirection() != direction) {
+    public void faceEast()
+    {
+        while(getDirection() != EAST){
             turnRight();
         }
     }
-}
-/**
- * zolang niet op de nest
- * draai naar rechts
- * als er geen hek voor je staat
- * loop
- * anders naar links en als er dan weer geen hek voor je staat loop en als dat weer niet is moet je gaan lopen en daarna weer naar links
- * 
- */
-public void findMaze()
-{
-    while (!onNest())
+
+    public void faceWest()
     {
-        turnRight();
-        if (!fenceAhead())
-        {
-            move();
+        while(getDirection() != WEST){
+            turnRight();
         }
-        else
+    }
+
+    public void faceSouth()
+    {
+        while(getDirection() != SOUTH){
+            turnRight();
+        }
+    }
+
+    public void faceNorth()
+    {
+        while(getDirection() != NORTH){
+            turnRight();
+        }
+    }
+
+    public void faceDirection(int direction) {
+        if (direction >= 0 && direction <= 3) {
+            while (getDirection() != direction) {
+                turnRight();
+            }
+        }
+    }
+
+    /**
+     * zolang niet op de nest
+     * draai naar rechts
+     * als er geen hek voor je staat
+     * loop
+     * anders naar links en als er dan weer geen hek voor je staat loop en als dat weer niet is moet je gaan lopen en daarna weer naar links
+     * 
+     */
+    public void findMaze()
+    {
+        while (!onNest())
         {
-            turnLeft();
+            turnRight();
             if (!fenceAhead())
             {
                 move();
@@ -340,14 +316,18 @@ public void findMaze()
                 else
                 {
                     turnLeft();
-                    move();
+                    if (!fenceAhead())
+                    {
+                        move();
+                    }
+                    else
+                    {
+                        turnLeft();
+                        move();
+                    }
                 }
             }
         }
     }
 }
-}
-
-
-
 
