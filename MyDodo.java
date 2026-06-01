@@ -292,9 +292,9 @@ public class MyDodo extends Dodo
     /**
      * zolang niet op de nest
      * draai naar rechts
-     * als er geen hek voor je staat
+     * als er geen hek voor je staat en niet naar de locatie dan lopen
      * loop
-     * anders naar links en als er dan weer geen hek voor je staat loop en als dat weer niet is moet je gaan lopen en daarna weer naar links
+     * anders naar links en als er dan weer geen hek voor je staat loop en als dat weer niet is moet je gaan lopen en daarna weer naar links 
      * 
      */
     public void findMaze()
@@ -329,5 +329,47 @@ public class MyDodo extends Dodo
             }
         }
     }
-}
+
+    public boolean validCoordinates(int x, int y)
+    {
+        if (x < 0 || x >= getWorld().getWidth() ||
+        y < 0 || y >= getWorld().getHeight())
+        {
+            showError("Invalid coordinates");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void goToLocation(int x, int y)
+    {
+        if (!validCoordinates(x, y))
+        {
+            return;
+        }
+
+        if (getX() < x)
+        {
+            faceDirection(EAST);
+            jump(x - getX());
+        }
+        else if (getX() > x)
+        {
+            faceDirection(WEST);
+            jump(getX() - x);
+        }
+
+        if (getY() < y)
+        {
+            faceDirection(SOUTH);
+            jump(y - getY());
+        }
+        else if (getY() > y)
+        {
+            faceDirection(NORTH);
+            jump(getY() - y);
+        }
+    }
+} 
 
