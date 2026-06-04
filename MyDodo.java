@@ -395,6 +395,20 @@ public class MyDodo extends Dodo
 
         return aantalEieren;
     }
+    public void layTrailOfEggs(int n) {
+    if (n <= 0) {
+        showError("Aantal moet groter zijn dan 0");
+    } else {
+        int aantalGelegd = 0;
+        while (aantalGelegd < n) {
+            layEgg();
+            aantalGelegd++;
+            if (aantalGelegd < n) {
+                move();
+            }
+        }
+    }
+}
     
 } 
 
