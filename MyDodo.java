@@ -409,6 +409,19 @@ public class MyDodo extends Dodo
         }
     }
 }
+public int countEggsInWorld() {
+    int totaal = 0;
+    int rij = 0;
+    while (rij < getWorld().getHeight()) {
+        goToLocation(0, rij);
+        faceEast();
+        totaal = totaal + countEggsInRow();
+        rij++;
+    }
+    goToLocation(0, 0);
+    faceEast();
+    return totaal;
+}
     
 } 
 
