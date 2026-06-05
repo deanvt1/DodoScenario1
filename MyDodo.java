@@ -534,5 +534,46 @@ public void strongMonument()
         aantal = aantal * 2;
     }
 }
+public void piramide()
+{
+    int startX = getX();
+    int startY = getY();
+
+    int aantal = 1;
+    int rij = 0;
+
+    while (!borderAhead())
+    {
+        
+        goToLocation(startX, startY + rij);
+        faceEast();
+
+        int gelegd = 0;
+
+        while (gelegd < aantal && !borderAhead())
+        {
+            layEgg();
+            gelegd++;
+
+            if (gelegd < aantal)
+            {
+                move();
+            }
+        }
+
+        // volgende rij
+        aantal = aantal + 2;
+        rij++;
+
+        // stop als je niet meer naar beneden kunt
+        if (getY() + 1 >= getWorld().getHeight())
+        {
+            break;
+        }
+    }
+
+    goToLocation(startX, startY);
+    faceEast();
+}
 } 
 
