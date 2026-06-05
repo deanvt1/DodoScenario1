@@ -454,6 +454,42 @@ public class MyDodo extends Dodo
 
     return rijMetMeesteEieren;
 }    
+public void monumentOffEggs()
+{
+    int startX = getX();
+    int startY = getY();
 
+    int hoogte = getWorld().getHeight() - startY;
+    int breedte = getWorld().getWidth() - startX;
+
+    int grootte = Math.min(hoogte, breedte);
+
+    int kolom = 0;
+
+    while (kolom < grootte)
+    {
+        goToLocation(startX + kolom, startY);
+        faceSouth();
+
+        int gelegd = 0;
+
+        while (gelegd < grootte - kolom)
+        {
+            layEgg();
+
+            if (gelegd < grootte - kolom - 1)
+            {
+                move();
+            }
+
+            gelegd++;
+        }
+
+        kolom++;
+    }
+
+    goToLocation(startX, startY);
+    faceEast();
+}  
 } 
 
