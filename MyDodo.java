@@ -395,33 +395,65 @@ public class MyDodo extends Dodo
 
         return aantalEieren;
     }
+
     public void layTrailOfEggs(int n) {
-    if (n <= 0) {
-        showError("Aantal moet groter zijn dan 0");
-    } else {
-        int aantalGelegd = 0;
-        while (aantalGelegd < n) {
-            layEgg();
-            aantalGelegd++;
-            if (aantalGelegd < n) {
-                move();
+        if (n <= 0) {
+            showError("Aantal moet groter zijn dan 0");
+        } else {
+            int aantalGelegd = 0;
+            while (aantalGelegd < n) {
+                layEgg();
+                aantalGelegd++;
+                if (aantalGelegd < n) {
+                    move();
+                }
             }
         }
     }
-}
-public int countEggsInWorld() {
-    int totaal = 0;
+
+    public int countEggsInWorld() {
+        int totaal = 0;
+        int rij = 0;
+        while (rij < getWorld().getHeight()) {
+            goToLocation(0, rij);
+            faceEast();
+            totaal = totaal + countEggsInRow();
+            rij++;
+        }
+        goToLocation(0, 0);
+        faceEast();
+        return totaal;
+    }
+    public int rowWithMostEggs()
+{
+    int meesteEieren = -1;
+    int rijMetMeesteEieren = 0;
+
     int rij = 0;
-    while (rij < getWorld().getHeight()) {
+
+    while (rij < getWorld().getHeight())
+    {
         goToLocation(0, rij);
         faceEast();
-        totaal = totaal + countEggsInRow();
+
+        int aantalEieren = countEggsInRow();
+
+        if (aantalEieren > meesteEieren)
+        {
+            meesteEieren = aantalEieren;
+            rijMetMeesteEieren = rij;
+        }
+
         rij++;
     }
+
     goToLocation(0, 0);
     faceEast();
-    return totaal;
-}
-    
+
+    System.out.println(rijMetMeesteEieren);
+
+    return rijMetMeesteEieren;
+}    
+
 } 
 
