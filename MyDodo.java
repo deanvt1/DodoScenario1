@@ -491,5 +491,48 @@ public void monumentOffEggs()
     goToLocation(startX, startY);
     faceEast();
 }  
+public void strongMonument()
+{
+    int aantal = 1;
+
+    while (true)
+    {
+        int gelegd = 0;
+
+        while (gelegd < aantal)
+        {
+            layEgg();
+            gelegd++;
+
+            if (gelegd < aantal)
+            {
+                move();
+            }
+        }
+
+        
+        turnLeft();
+        turnLeft();
+
+        while (!borderAhead())
+        {
+            move();
+        }
+
+        turnLeft();
+        turnLeft();
+
+        
+        if (borderAhead())
+        {
+            break;
+        }
+
+        move();
+
+        
+        aantal = aantal * 2;
+    }
+}
 } 
 
