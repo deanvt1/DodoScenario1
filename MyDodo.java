@@ -575,5 +575,6 @@ public void piramide()
     goToLocation(startX, startY);
     faceEast();
 }
+
 } 
 
