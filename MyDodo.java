@@ -575,6 +575,89 @@ public void piramide()
     goToLocation(startX, startY);
     faceEast();
 }
+public int countEggsInColumn()
+{
+    int aantalEieren = 0;
 
-} 
+    if (onEgg())
+    {
+        aantalEieren++;
+    }
+
+    while (!borderAhead())
+    {
+        move();
+
+        if (onEgg())
+        {
+            aantalEieren++;
+        }
+    }
+
+    turnLeft();
+    turnLeft();
+
+    while (!borderAhead())
+    {
+        move();
+    }
+
+    turnLeft();
+    turnLeft();
+
+    return aantalEieren;
+}
+
+public void placeParityEggsRows()
+{
+    int rij = 0;
+
+    while (rij < getWorld().getHeight())
+    {
+        goToLocation(0, rij);
+        faceEast();
+
+        int aantalEieren = countEggsInRow();
+
+        if (aantalEieren % 2 == 1)
+        {
+            walkToWorldEdgePrintingCoordinates();
+            layEgg();
+        }
+
+        rij++;
+    }
+}
+
+public void placeParityEggsColumns()
+{
+    int kolom = 0;
+
+    while (kolom < getWorld().getWidth())
+    {
+        goToLocation(kolom, 0);
+        faceSouth();
+
+        int aantalEieren = countEggsInColumn();
+
+        if (aantalEieren % 2 == 1)
+        {
+            while (!borderAhead())
+            {
+                move();
+            }
+
+            layEgg();
+        }
+
+        kolom++;
+    }
+}
+
+public void parityAlgorithm()
+{
+    placeParityEggsRows();
+    placeParityEggsColumns();
+}
+}
 
