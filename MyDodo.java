@@ -699,5 +699,71 @@ public void detectParityError()
     goToLocation(0,0);
     faceEast();
 }
+
+public int getIncorrectRowNr()
+{
+    int rij = 0;
+
+    while (rij < getWorld().getHeight())
+    {
+        goToLocation(0, rij);
+        faceDirection(EAST);
+
+        int aantalEieren = countEggsInRow();
+
+        if (aantalEieren % 2 == 1)
+        {
+            return rij;
+        }
+
+        rij++;
+    }
+
+    return -1;
+}
+
+public int getIncorrectColumnNr()
+{
+    int kolom = 0;
+
+    while (kolom < getWorld().getWidth())
+    {
+        goToLocation(kolom, 0);
+        faceDirection(SOUTH);
+
+        int aantalEieren = countEggsInColumn();
+
+        if (aantalEieren % 2 == 1)
+        {
+            return kolom;
+        }
+
+        kolom++;
+    }
+
+    return -1;
+}
+
+public void goToIncorrectBit()
+{
+    int rij = getIncorrectRowNr();
+    int kolom = getIncorrectColumnNr();
+
+    goToLocation(kolom, rij);
+}
+
+public void fixIncorrectBit()
+{
+    goToIncorrectBit();
+
+    if (onEgg())
+    {
+        pickUpEgg();
+    }
+    else
+    {
+        layEgg();
+    }
+}
 }
 
