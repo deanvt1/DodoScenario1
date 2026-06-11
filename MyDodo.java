@@ -659,5 +659,45 @@ public void parityAlgorithm()
     placeParityEggsRows();
     placeParityEggsColumns();
 }
+
+public void detectParityError()
+{
+    int rij = 0;
+
+    while (rij < getWorld().getHeight())
+    {
+        goToLocation(0, rij);
+        faceEast();
+
+        int aantalEieren = countEggsInRow();
+
+        if (aantalEieren % 2 == 1)
+        {
+            System.out.println("Oneven rij: " + rij);
+        }
+
+        rij++;
+    }
+
+    int kolom = 0;
+
+    while (kolom < getWorld().getWidth())
+    {
+        goToLocation(kolom, 0);
+        faceSouth();
+
+        int aantalEieren = countEggsInColumn();
+
+        if (aantalEieren % 2 == 1)
+        {
+            System.out.println("Oneven kolom: " + kolom);
+        }
+
+        kolom++;
+    }
+
+    goToLocation(0,0);
+    faceEast();
+}
 }
 
