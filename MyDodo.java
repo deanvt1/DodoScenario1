@@ -765,5 +765,61 @@ public void fixIncorrectBit()
         layEgg();
     }
 }
+public void goToAnyWall() {
+    while (!borderAhead()) {
+        move();
+    }
+}
+public void turnToWalkableDirection() {
+    int tries = 0;
+    while (!canMove() && tries < 4) {
+        turnRight();
+        tries++;
+    }
+}
+/**
+ * mimi kan hier overal starten en werkt overal dat zijn de voordelen
+ * als die in het midden begint
+ * er obstakels zijn
+ * minder het zelfde en draaien
+ * 
+ */public int countEggsGeneric() {
+    int count = 0;
+
+    if (onEgg()) count++;
+
+    while (!borderAhead()) {
+        move();
+        if (onEgg()) count++;
+    }
+
+    // teruglopen
+    turnRight();
+    turnRight();
+
+    while (!borderAhead()) {
+        move();
+    }
+
+    turnRight();
+    turnRight();
+
+    return count;
+}
+/**
+ * als die in het midden begint
+ * er obstakels zijn
+ * 
+ */public void placeParityEggGeneric() {
+    while (!borderAhead()) 
+    move();
+    layEgg();
+    turnRight();
+    turnRight();
+    while (!borderAhead()) 
+    move();
+    turnRight(); 
+    turnRight();
+}   
 }
 
