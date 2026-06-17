@@ -821,5 +821,62 @@ public void turnToWalkableDirection() {
     turnRight(); 
     turnRight();
 }   
+public int getEggValue(Egg e) {
+    // Als het ei een BlueEgg is dan is het 1 punt waard
+    if (e instanceof BlueEgg) {
+        return 1;
+    } 
+    // Als het ei een GoldenEgg is dan is het 5 punten waard
+    if (e instanceof GoldenEgg) {
+        return 5;
+    }
+    // Als het ei een SurpriseEgg is dan heeft het een willekeurige waarde
+    // e.getValue() haalt die waarde op
+    if (e instanceof SurpriseEgg) {
+        return e.getValue();
+    }
+    return 0;
+}
+public int countPointsInRow() {
+    int totaal = 0;
+
+    // tel het ei op de startpositie
+    if (onEgg()) {
+        totaal += getEggValue(getEgg());
+    }
+
+    // loop naar rechts tot de muur
+    while (!borderAhead()) {
+        move();
+
+        if (onEgg()) {
+            totaal += getEggValue(getEgg());
+        }
+    }
+
+    // terug naar begin van de rij
+    goBackToStartOfRowAndFaceBack();
+
+    return totaal;
+}
+public int countPointsInWorld() {
+    int totaal = 0;
+    int rij = 0;
+
+    while (rij < getWorld().getHeight()) {
+        goToLocation(0, rij);
+        faceEast();
+
+        totaal = totaal + countPointsInRow();
+        rij++;
+    }
+
+    // terug naar startpositie
+    goToLocation(0, 0);
+    faceEast();
+
+    return totaal;
+}
+
 }
 
