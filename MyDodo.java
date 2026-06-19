@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  *
@@ -823,26 +824,22 @@ public void turnToWalkableDirection() {
 }   
 public int getEggValue(Egg e) {
     // Als het ei een BlueEgg is dan is het 1 punt waard
-    if (e instanceof BlueEgg) {
-        return 1;
-    } 
+   
     // Als het ei een GoldenEgg is dan is het 5 punten waard
-    if (e instanceof GoldenEgg) {
-        return 5;
-    }
+
     // Als het ei een SurpriseEgg is dan heeft het een willekeurige waarde
     // e.getValue() haalt die waarde op
-    if (e instanceof SurpriseEgg) {
+     
         return e.getValue();
-    }
-    return 0;
+    
+    
 }
 public int countPointsInRow() {
     int totaal = 0;
 
     // tel het ei op de startpositie
     if (onEgg()) {
-        totaal += getEggValue(getEgg());
+        totaal += (getEgg().getValue());
     }
 
     // loop naar rechts tot de muur
@@ -850,7 +847,7 @@ public int countPointsInRow() {
         move();
 
         if (onEgg()) {
-            totaal += getEggValue(getEgg());
+            totaal += (getEgg().getValue());
         }
     }
 
@@ -874,8 +871,29 @@ public int countPointsInWorld() {
     // terug naar startpositie
     goToLocation(0, 0);
     faceEast();
-    /
+    
     return totaal;
+}
+/**
+ * maakt een lijst van 10 surpriseeggs in de wereld
+ */public List<SurpriseEgg> makeListOfSurpriseEggs() {
+    List<SurpriseEgg> lijst = SurpriseEgg.generateListOfSurpriseEggs(10, getWorld());
+    return lijst;
+}
+/**
+ * krijgt 1 ei binnen
+ * print de x en y van het ei
+ */public void printCoordinatesOfEgg(Egg egg) {
+    System.out.println(egg.getX() + ", " + egg.getY());
+}
+/***
+ * maak een lijst van 10 eieren
+ * daarna print die bij elk ei in de lijst de coordinates
+ */public void makeListOfSurpriseEggsAndPrintCoordinates() {
+    List<SurpriseEgg> lijst = makeListOfSurpriseEggs();
+    for (SurpriseEgg egg : lijst) {
+        printCoordinatesOfEgg(egg); 
+    }
 }
 }
 
