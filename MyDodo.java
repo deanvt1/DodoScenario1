@@ -874,9 +874,8 @@ public int countPointsInWorld() {
     // terug naar startpositie
     goToLocation(0, 0);
     faceEast();
-
+    /
     return totaal;
 }
-
 }
 
